@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monthly Bill</title>
+    <style>
+      /* Styling for the body */
+      body {
+        font-family: "Roboto", sans-serif;
+        background: url("https://th.bing.com/th/id/R.502b31fbb431847eb4cf74fa90ec0827?rik=gYYYZWzWnwAWAA&riu=http%3a%2f%2fteafloor.com%2fblog%2fwp-content%2fuploads%2f2022%2f03%2fbest-indian-chai-tea.jpg&ehk=UhHQ7ki6KWpEIWIduhAi%2bp7AuFnuppNVjGhJJ8tbpAI%3d&risl=&pid=ImgRaw&r=0")
+          no-repeat center center/cover;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full viewport height */
+      }
+
+      /* Bill container styling */
+      .bill-container {
+        position: relative;
+        max-width: 900px;
+        max-height: 600px; /* Increased height for form visibility */
+        width: 100%;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.833
+        ); /* Slightly transparent background for better readability */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border-top: 4px solid #4caf50;
+      }
+
+      /* Close button styling */
+      .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: transparent;
+        border: none;
+        font-size: 24px;
+        color: #333;
+        cursor: pointer;
+      }
+
+      /* Heading styling */
+      h2 {
+        color: #333;
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #4caf50;
+        padding-bottom: 10px;
+      }
+
+      /* Form styling */
+      form {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px; /* Space below the form */
+      }
+
+      select {
+        padding: 10px;
+        font-size: 16px;
+        margin-left: 670px;
+        border: 2px solid #4caf50;
+        border-radius: 5px;
+        outline: none;
+        transition: border-color 0.3s;
+        margin-right: 10px; /* Margin between dropdown and button */
+      }
+
+      select:focus {
+        border-color: #388e3c; /* Darker green on focus */
+      }
+
+      button[type="submit"] {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #388e3c; /* Darker green on hover */
+      }
+
+      /* Scrollable table container */
+      .table-container {
+        max-height: 300px; /* Set a fixed height for the scrollable area */
+        overflow-y: auto; /* Enable vertical scrolling */
+        margin-bottom: 30px; /* Add space below the table */
+      }
+
+      /* Table styling */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      td {
+        padding: 15px;
+        color: #555;
+        font-size: 16px;
+      }
+
+      /* Hover effect on rows */
+      tr:hover {
+        background-color: #f4f4f4;
+      }
+
+      /* Total bill section styling */
+      .total-bill {
+        text-align: right;
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px; /* Space below the total bill */
+      }
+
+      /* Responsive design for mobile */
+      @media (max-width: 768px) {
+        .bill-container {
+          padding: 20px;
+        }
+
+        table,
+        th,
+        td {
+          font-size: 14px;
+        }
+      }
+    </style>
+    <script>
+      function closeBill() {
+        window.location.href = "/chaiCoffee";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="bill-container">
+      <button class="close-btn" onclick="closeBill()">×</button>
+      <h2>Monthly Bill Summary</h2>
+      <form method="get" action="/getBillChaiCoffee/filterbill">
+        <select id="month" name="month">
+          <option value="">Select Month</option>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+        <button type="submit">Filter</button>
+      </form>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>No. of Chai</th>
+              <th>No. of Coffee</th>
+              <th>Session</th>
+              <th>Total Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% let totalBill = 0; %> <% bills.forEach(bill => { %>
+            <tr>
+              <td><%= bill.date %></td>
+              <td><%= bill.chaiqty %></td>
+              <td><%= bill.coffeeqty %></td>
+              <td><%= bill.session %></td>
+              <td>₹<%= bill.totalamount %></td>
+            </tr>
+            <% totalBill += bill.totalamount; %> <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <div class="total-bill">Total Bill: ₹<%= totalBill %></div>
+    </div>
+  </body>
+</html>

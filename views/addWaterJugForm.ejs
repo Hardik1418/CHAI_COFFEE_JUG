@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Water Jug</title>
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        background: url("https://images6.alphacoders.com/330/330900.jpg")
+          no-repeat center center/cover; /* Add your image URL here */
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      form {
+        background-color: #ffffffb0;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 500px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 1.8rem;
+      }
+
+      label {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 8px;
+        display: block;
+        font-weight: bold;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        background-color: #f9f9f9;
+        transition: border-color 0.3s ease;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: #4caf50;
+        outline: none;
+      }
+
+      .submit-btn,
+      .close-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .submit-btn {
+        color: white;
+        background-color: #4caf50;
+      }
+
+      .submit-btn:hover {
+        background-color: #43a047;
+      }
+
+      .submit-btn:active {
+        background-color: #388e3c;
+      }
+
+      .close-btn {
+        background-color: #f44336; /* Red background for close button */
+        color: white;
+        margin-top: 10px; /* Add space above the close button */
+      }
+
+      .close-btn:hover {
+        background-color: #e53935;
+      }
+
+      .close-btn:active {
+        background-color: #c62828;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 500px) {
+        form {
+          padding: 30px;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        label {
+          font-size: 0.9rem;
+        }
+
+        input,
+        select {
+          padding: 10px;
+        }
+
+        .submit-btn,
+        .close-btn {
+          padding: 12px;
+          font-size: 1rem;
+        }
+      }
+    </style>
+    <script>
+      // Function to close the form (or redirect to home page)
+      function closeForm() {
+        // For example, redirect to home page
+        window.location.href = "/waterJug"; // Adjust the URL as needed
+      }
+    </script>
+  </head>
+  <body>
+    <form action="/waterJug/addWaterJug" method="post">
+      <h2>Add Water Jug</h2>
+
+      <label for="quantity">Quantity (Number of jugs):</label>
+      <input type="number" id="quantity" name="quantity" required />
+
+      <label for="session">Session:</label>
+      <select id="session" name="session" required>
+        <option value="morning">Morning</option>
+        <option value="evening">Evening</option>
+      </select>
+
+      <label for="date">Select Date:</label>
+      <input type="date" id="date" name="date" required />
+
+      <button type="submit" class="submit-btn">Submit</button>
+      <button type="button" class="close-btn" onclick="closeForm()">
+        Close
+      </button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVIQ</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: 100vh;
+        background: url("https://images.hdqwalls.com/download/leaf-autumn-5k-tb-1920x1080.jpg")
+          no-repeat center center/cover;
+        font-family: "Arial", sans-serif;
+        color: #ffffff;
+      }
+
+      h1 {
+        font-size: 6rem;
+        color: #ffffff;
+        margin-left: 30px;
+        margin-top: 30px;
+      }
+
+      /* Left-aligned, Vertical Buttons */
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        margin-top: 170px;
+        margin-left: -750px;
+      }
+
+      .btn {
+        width: 350px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        text-decoration: none;
+        transition: all 0.4s ease;
+        cursor: pointer;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(45deg, #ff8c00, #ffa500);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 300%;
+        height: 300%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: rotate(45deg);
+        transition: all 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .add-coffee {
+        background: linear-gradient(45deg, #ff8c00, #ff6347);
+      }
+
+      .add-jug {
+        background: linear-gradient(45deg, #4caf50, #3cb371);
+      }
+
+      .btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 3rem;
+        }
+
+        .btn {
+          width: 200px;
+          height: 80px;
+          font-size: 1.5rem;
+        }
+
+        .buttons {
+          margin-left: 20px;
+          gap: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main Container -->
+    <div class="container">
+      <h1>Welcome to SVIQ</h1>
+    </div>
+
+    <!-- Vertical Buttons -->
+    <div class="buttons">
+      <a href="/chaiCoffee" class="btn add-coffee"><span>Chai Coffee</span></a>
+      <a href="/waterJug" class="btn add-jug"><span>Water Jug</span></a>
+    </div>
+  </body>
+</html>
